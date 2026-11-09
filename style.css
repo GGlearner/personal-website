@@ -1,0 +1,369 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6f6f6f;
+  --green: #15603d;
+  --green-deep: #0e3f28;
+  --pill-bg: #f5f5f3;
+  --pill-border: #e7e7e3;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14130f;
+    --text: #f3f2ee;
+    --muted: #a39f97;
+    --green: #6fc79a;
+    --green-deep: #a7e3c3;
+    --pill-bg: #1f1e1a;
+    --pill-border: #35332d;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif {
+  font-family: "Spectral", Georgia, "Times New Roman", serif;
+}
+
+/* ---------- Pill navigation ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  gap: 16px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.brand {
+  font-family: "Spectral", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  text-decoration: none;
+}
+
+.topbar .nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 6px;
+  transition: color 0.15s ease;
+}
+
+.topbar .nav-links a:hover,
+.topbar .nav-links a.active {
+  color: var(--green);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 40px 24px 8px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-family: "Spectral", Georgia, serif;
+  font-weight: 500;
+  color: var(--green);
+  font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---------- Staggered gallery ---------- */
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 56px 32px 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 210px;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Vertical stagger, BCG-style */
+.card:nth-child(1) { transform: translateY(26px); }
+.card:nth-child(2) { transform: translateY(-20px); }
+.card:nth-child(4) { transform: translateY(-20px); }
+.card:nth-child(5) { transform: translateY(26px); }
+
+.card:nth-child(1):hover { transform: translateY(18px); }
+.card:nth-child(2):hover { transform: translateY(-28px); }
+.card:nth-child(4):hover { transform: translateY(-28px); }
+.card:nth-child(5):hover { transform: translateY(18px); }
+
+/* Featured center card is larger + light */
+.card.featured {
+  width: 270px;
+  aspect-ratio: 3 / 3.6;
+  background: #f3f3f0;
+  color: var(--text);
+  z-index: 2;
+}
+
+/* Placeholder gradient tiles — swap for real images via background-image */
+.tile-1 { background-image: linear-gradient(140deg, #0b1e3a, #1b6ef3 55%, #00d4ff); }
+.tile-2 { background-image: linear-gradient(160deg, #eef2f7, #c6d4e4); }
+.tile-3 { background-image: linear-gradient(135deg, #7f848d, #dcdfe4 50%, #6b7078); }
+.tile-4 { background-image: linear-gradient(135deg, #1a2740, #c86a3a 70%, #f0a05a); }
+
+.card .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+}
+
+.card.featured .overlay {
+  justify-content: space-between;
+}
+
+.card .tag {
+  align-self: flex-start;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.card.featured .tag {
+  background: var(--green);
+}
+
+.card .card-meta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.card .card-title {
+  font-family: "Spectral", Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+/* ---------- Spotlight pill bar ---------- */
+.spotlight-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 28px 24px 64px;
+}
+
+.spotlight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  border-radius: 999px;
+  padding: 18px 34px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  max-width: 100%;
+}
+
+.spotlight .label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.spotlight a {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.15s ease;
+}
+
+.spotlight a:hover {
+  color: var(--green);
+}
+
+/* ---------- Content sections (About / Thoughts) ---------- */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 24px 0 64px;
+}
+
+.section h2 {
+  font-family: "Spectral", Georgia, serif;
+  font-weight: 600;
+  color: var(--green);
+  font-size: 1.7rem;
+  margin: 36px 0 14px;
+}
+
+.section p {
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+}
+
+.page-head {
+  text-align: center;
+  padding: 24px;
+}
+
+.page-head h1 {
+  font-family: "Spectral", Georgia, serif;
+  font-weight: 500;
+  color: var(--green);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.page-head .lead {
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin-top: 10px;
+}
+
+.entry {
+  padding: 30px 0;
+  border-bottom: 1px solid var(--pill-border);
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry .date {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.entry h3 {
+  font-family: "Spectral", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 8px 0 10px;
+  color: var(--text);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  border-top: 1px solid var(--pill-border);
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .gallery {
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 40px 20px 20px;
+  }
+  .card:nth-child(n) { transform: none; }
+  .card:nth-child(n):hover { transform: translateY(-6px); }
+  .spotlight { gap: 18px; padding: 16px 22px; }
+  .topbar { padding: 18px 16px; }
+}
