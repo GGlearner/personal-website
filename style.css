@@ -177,14 +177,28 @@ body {
 .card:nth-child(4):hover { transform: translateY(-28px); }
 .card:nth-child(5):hover { transform: translateY(18px); }
 
-/* Featured center card is larger + light */
+/* Featured center card is larger + light (fixed dark text in both themes) */
 .card.featured {
   width: 270px;
   aspect-ratio: 3 / 3.6;
   background: #f3f3f0;
-  color: var(--text);
+  color: #1a1a1a;
   z-index: 2;
 }
+
+.card.featured .card-title { color: #1a1a1a; }
+.card.featured .card-meta { color: #6f6f6f; }
+
+/* Subtle bottom scrim so labels stay legible over photos */
+.card:not(.featured) .overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 45%);
+  z-index: 0;
+}
+
+.card .overlay > * { position: relative; z-index: 1; }
 
 /* Placeholder gradient tiles — swap for real images via background-image */
 .tile-1 { background-image: linear-gradient(140deg, #0b1e3a, #1b6ef3 55%, #00d4ff); }
